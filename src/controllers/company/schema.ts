@@ -9,6 +9,15 @@ export const Get = {
   },
 };
 
+export const GetByUserId = {
+  description: "This is the method get to company endpoint",
+  tags: ["companys"],
+  summary: "Get Method",
+  response: {
+    200: Interfaces.OutputCompany.array(),
+  },
+};
+
 export const GetById = {
   description: "This is the method get by id to company endpoint",
   tags: ["companys"],

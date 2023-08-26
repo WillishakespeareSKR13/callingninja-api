@@ -12,6 +12,15 @@ export const Get: IController = async () => {
   return data;
 };
 
+export const GetByUserId: IController = async () => {
+  const message = {
+    message: "Hello World",
+    messagePrivate: "Hello World",
+  };
+  const data = Array.from({ length: 10 }, () => message);
+  return data;
+};
+
 export const GetById: IController = async (req) => {
   const { id } = req.params as Types.InputCompanyById["Params"];
   const data = {

@@ -1,7 +1,7 @@
 import Controller from "../controllers";
 import { RouteOptions } from "fastify";
 
-export const GetTest: RouteOptions = {
+export const Get: RouteOptions = {
   method: "GET",
   url: "/api/twilio",
   onRequest: (f) => f.jwtVerify(),
