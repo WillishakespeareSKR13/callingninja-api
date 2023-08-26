@@ -3,7 +3,7 @@ import { RouteOptions } from "fastify";
 
 export const GetNumbers: RouteOptions = {
   method: "GET",
-  url: "/api/twilio/phones/:id",
+  url: "/api/twilio/phones/company/:id",
   onRequest: (f) => f.jwtVerify(),
   handler: Controller.Twilio.GetPhonesByCompanyId,
   schema: Controller.Twilio.Schema.GetPhonesByUserId,
