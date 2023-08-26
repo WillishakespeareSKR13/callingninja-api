@@ -1,4 +1,4 @@
-import User from "../../models/user";
+import User, { IUser } from "../../models/user";
 import { IController } from "../../types/controller";
 import Utils from "../../utils";
 import * as Types from "./types";
@@ -40,7 +40,9 @@ export const Register: IController = async (req) => {
 export const Token: IController = async (req) => {
   const header = req.headers as unknown as Types.InputAuthToken["Headers"];
 
-  const user = Utils.JWT.Decode(header?.authorization);
+  const decode_user = Utils.JWT.Decode(header?.authorization);
+  const user = decode_user as IUser;
+
   return user;
 };
 
