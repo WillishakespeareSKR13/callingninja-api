@@ -1,5 +1,9 @@
 import * as Interfaces from "./interfaces";
 
+export type InputCompanyByUserId = {
+  Params: typeof Interfaces.InputCompanyUserId["shape"];
+};
+
 export type InputCompanyById = {
   Params: typeof Interfaces.InputCompanyId["shape"];
 };

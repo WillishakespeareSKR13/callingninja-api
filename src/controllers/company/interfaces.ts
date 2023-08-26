@@ -5,6 +5,10 @@ export const InputCompany = Company.omit({
   id: true,
 });
 
+export const InputCompanyUserId = z.object({
+  id: z.string(),
+});
+
 export const InputCompanyId = z.object({
   id: z.string(),
 });
