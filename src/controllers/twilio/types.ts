@@ -9,3 +9,7 @@ export type InputPhonesByCompanyId = {
 export type InputTwilioPhoneCall = {
   Body: typeof Interfaces.InputTwilioPhoneCall["_type"];
 };
+
+export type InputTwilioCallCallback = {
+  Body: typeof Interfaces.InputTwilioCallCallback["_type"];
+};

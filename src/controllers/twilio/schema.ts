@@ -19,3 +19,13 @@ export const Call = {
     200: Interfaces.OutputTwilioCall.array(),
   },
 };
+
+export const CallCallback = {
+  description: "This is the method call to phone endpoint",
+  tags: ["twilios"],
+  summary: "Post Method",
+  body: Interfaces.InputTwilioCallCallback,
+  response: {
+    200: Interfaces.OutputTwilioCallCallback,
+  },
+};

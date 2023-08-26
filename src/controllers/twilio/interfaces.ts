@@ -50,6 +50,12 @@ export const InputTwilioPhoneCall = z.object({
   phones: z.array(z.string()),
 });
 
+export const InputTwilioCallCallback = TwilioCall;
+
 export const OutputTwilioPhone = TwilioPhone;
 
 export const OutputTwilioCall = TwilioCall;
+
+export const OutputTwilioCallCallback = z.object({
+  sid: z.string(),
+});

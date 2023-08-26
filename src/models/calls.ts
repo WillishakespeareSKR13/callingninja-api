@@ -21,9 +21,9 @@ export type ICall = z.infer<typeof Call>;
 
 const CallSchema = new Schema<ICall>(
   {
-    sid: { type: String, required: true },
     userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
     companyId: { type: Schema.Types.ObjectId, ref: "Company", required: true },
+    sid: { type: String, required: true },
     to: { type: String, required: true },
     from: { type: String, required: true },
     status: { type: String, required: true },

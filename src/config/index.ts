@@ -8,6 +8,7 @@ const CONFIG = {
   APP: {
     PORT: Number(process.env.PORT ?? 5000),
     HOST: process.env.HOST ?? "localhost",
+    HOST_CALLBACK: process.env.HOST_CALLBACK ?? "http://localhost:5000",
     ENV: process.env.NODE_ENV ?? "development",
     LOGGER: process.env.NODE_ENV === "development" ? true : false,
     SECRET: process.env.SECRET ?? "secret",
