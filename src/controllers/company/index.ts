@@ -14,7 +14,7 @@ export const GetByUserId: IController = async (req) => {
   const user = await User.findById(id);
   if (!user) throw new Error("User not found");
 
-  const companies = await Company.find({ id_user: user.id });
+  const companies = await Company.find({ userId: user.id });
 
   return companies;
 };
@@ -29,14 +29,14 @@ export const GetById: IController = async (req) => {
 
 export const Create: IController = async (req) => {
   const payload = req.body as Types.InputCreateCompany["Body"];
-  const { id_user } = payload;
+  const { userId } = payload;
 
-  const find_user = User.findById(id_user);
+  const find_user = User.findById(userId);
   if (!find_user) throw new Error("User not found");
 
   const company = await Company.create(payload);
 
-  await User.findByIdAndUpdate(id_user, { $push: { companies: company.id } });
+  await User.findByIdAndUpdate(userId, { $push: { companies: company.id } });
 
   return company;
 };
@@ -59,7 +59,7 @@ export const Delete: IController = async (req) => {
   const company = await Company.findByIdAndDelete(id);
   if (!company) throw new Error("Company not found");
 
-  await User.findByIdAndUpdate(company.id_user, {
+  await User.findByIdAndUpdate(company.userId, {
     $pull: { companies: company.id },
   });
 

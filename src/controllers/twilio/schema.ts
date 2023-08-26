@@ -1,10 +1,11 @@
 import * as Interfaces from "./interfaces";
 
-export const Get = {
-  description: "This is the method get to twilio endpoint",
+export const GetPhonesByUserId = {
+  description: "This is the method get to phone by user id endpoint",
   tags: ["twilios"],
   summary: "Get Method",
+  params: Interfaces.InputCompanyId,
   response: {
-    200: Interfaces.OutputTwilio,
+    200: Interfaces.OutputTwilioPhone,
   },
 };

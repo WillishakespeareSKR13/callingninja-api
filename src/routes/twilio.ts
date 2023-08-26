@@ -1,10 +1,10 @@
 import Controller from "../controllers";
 import { RouteOptions } from "fastify";
 
-export const Get: RouteOptions = {
+export const GetNumbers: RouteOptions = {
   method: "GET",
-  url: "/api/twilio",
+  url: "/api/twilio/phones/user/:id",
   onRequest: (f) => f.jwtVerify(),
-  handler: Controller.Twilio.Get,
-  schema: Controller.Twilio.Schema.Get,
+  handler: Controller.Twilio.GetPhonesByCompanyId,
+  schema: Controller.Twilio.Schema.GetPhonesByUserId,
 };
