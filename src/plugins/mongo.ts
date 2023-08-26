@@ -1,4 +1,5 @@
 import { SchemaOptions } from "mongoose";
+import AutoPopulateMongo from "mongoose-autopopulate";
 
 export type NormalizeOptions = SchemaOptions<any> & {
   delete: string[];
@@ -21,3 +22,5 @@ export const Normalize = (otps?: NormalizeOptions): NormalizeReturn => ({
   },
   ...otps,
 });
+
+export const AutoPopulate = AutoPopulateMongo;
