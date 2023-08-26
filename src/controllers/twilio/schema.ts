@@ -6,6 +6,6 @@ export const GetPhonesByUserId = {
   summary: "Get Method",
   params: Interfaces.InputCompanyId,
   response: {
-    200: Interfaces.OutputTwilioPhone,
+    200: Interfaces.OutputTwilioPhone.array(),
   },
 };

@@ -1,5 +1,6 @@
 import * as boom from "@hapi/boom";
 import { FastifyError, FastifyReply, FastifyRequest } from "fastify";
+import CONFIG from "../config";
 
 type IHandler = (
   error: FastifyError,
@@ -13,7 +14,7 @@ type IZodError = {
 };
 
 export const ErrorHandler: IHandler = (error, _, reply) => {
-  const { output, message, name } = boom.boomify(error);
+  const { output, message, name, details } = boom.boomify(error) as any;
   const { statusCode } = output;
   const parse = () => {
     switch (name) {
@@ -28,9 +29,16 @@ export const ErrorHandler: IHandler = (error, _, reply) => {
         return message ?? ["Error interno del servidor"];
     }
   };
+
+  const getDetails = () => {
+    if (CONFIG.APP.ENV !== "development") return {};
+    return { details };
+  };
+
   reply.code(statusCode).send({
     statusCode,
     error: name,
     message: parse(),
+    ...getDetails(),
   });
 };
