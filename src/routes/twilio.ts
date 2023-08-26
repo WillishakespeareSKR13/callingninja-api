@@ -16,3 +16,11 @@ export const Call: RouteOptions = {
   handler: Controller.Twilio.Call,
   schema: Controller.Twilio.Schema.Call,
 };
+
+export const CallCallback: RouteOptions = {
+  method: "POST",
+  url: "/api/twilio/call/callback",
+  onRequest: (f) => f.jwtVerify(),
+  handler: Controller.Twilio.CallCallback,
+  schema: Controller.Twilio.Schema.CallCallback,
+};
