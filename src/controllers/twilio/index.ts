@@ -16,8 +16,8 @@ export const GetPhonesByCompanyId: IController = async (req) => {
   return numbers;
 };
 
-export const CallPhone: IController = async (req) => {
-  const { companyId, phones, sid } =
+export const Call: IController = async (req) => {
+  const { companyId, phones, phone } =
     req.body as Types.InputTwilioPhoneCall["Body"];
 
   const company = await Company.findById(companyId);
@@ -26,15 +26,18 @@ export const CallPhone: IController = async (req) => {
   const { twillioSid, twillioToken } = company;
   const client = new Twilio(twillioSid, twillioToken);
 
-  // const calls = await Promise.all(
-  //   phones.mamap((phone) =>
-  //     client.calls.create({
-  //       url: `https://handler.twilio.com/twiml/EHc4e4e2e7e2e7e2e7e2e7e2e7e2e7e2e`,
-  //       to: phone,
-  //       from: `${sid}`,
-  //     })
-  //   )
-  // );
+  const calls = await Promise.all(
+    phones.map(
+      async (toPhone) =>
+        await client.calls.create({
+          url: "http://demo.twilio.com/docs/voice.xml",
+          to: toPhone,
+          from: phone,
+        })
+    )
+  );
+
+  return calls;
 };
 
 export * as Types from "./types";

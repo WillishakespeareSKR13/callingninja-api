@@ -44,14 +44,58 @@ export const TwilioPhone = z.object({
   status: z.string().nullish(),
 });
 
+const TwilioCall = z.object({
+  accountSid: z.string().nullish(),
+  answeredBy: z.string().nullish(),
+  apiVersion: z.string().nullish(),
+  callerName: z.string().nullish(),
+  dateCreated: z.date().nullish(),
+  dateUpdated: z.date().nullish(),
+  direction: z.string().nullish(),
+  duration: z.string().nullish(),
+  endTime: z.date().nullish(),
+  forwardedFrom: z.string().nullish(),
+  from: z.string().nullish(),
+  fromFormatted: z.string().nullish(),
+  groupSid: z.string().nullish(),
+  parentCallSid: z.string().nullish(),
+  phoneNumberSid: z.string().nullish(),
+  price: z.string().nullish(),
+  priceUnit: z.string().nullish(),
+  sid: z.string().nullish(),
+  startTime: z.date().nullish(),
+  status: z.string().nullish(),
+  subresourceUris: z
+    .object({
+      notifications: z.string().nullish(),
+      recordings: z.string().nullish(),
+      feedback: z.string().nullish(),
+      feedbackSummaries: z.string().nullish(),
+      payments: z.string().nullish(),
+      events: z.string().nullish(),
+      siprec: z.string().nullish(),
+      streams: z.string().nullish(),
+      userDefinedMessageSubscriptions: z.string().nullish(),
+      userDefinedMessages: z.string().nullish(),
+    })
+    .nullish(),
+  to: z.string().nullish(),
+  toFormatted: z.string().nullish(),
+  trunkSid: z.string().nullish(),
+  uri: z.string().nullish(),
+  queueTime: z.string().nullish(),
+});
+
 export const InputCompanyId = z.object({
   id: z.string(),
 });
 
 export const InputTwilioPhoneCall = z.object({
   companyId: z.string(),
-  sid: z.string(),
+  phone: z.string(),
   phones: z.array(z.string()),
 });
 
 export const OutputTwilioPhone = TwilioPhone;
+
+export const OutputTwilioCall = TwilioCall;

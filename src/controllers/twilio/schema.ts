@@ -9,3 +9,13 @@ export const GetPhonesByUserId = {
     200: Interfaces.OutputTwilioPhone.array(),
   },
 };
+
+export const Call = {
+  description: "This is the method call to phone endpoint",
+  tags: ["twilios"],
+  summary: "Post Method",
+  body: Interfaces.InputTwilioPhoneCall,
+  response: {
+    200: Interfaces.OutputTwilioCall.array(),
+  },
+};
