@@ -24,6 +24,7 @@
     "fastify": "^4.21.0",
     "mongoose": "^7.4.4",
     "mongoose-autopopulate": "^1.0.1",
+    "twilio": "^4.16.0",
     "zod": "^3.22.2",
     "zod-to-json-schema": "^3.21.4"
   },
