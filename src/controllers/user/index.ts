@@ -51,7 +51,9 @@ export const Update: IController = async (req) => {
     ...password,
   };
 
-  const update_user = await User.findByIdAndUpdate(id, payload);
+  const update_user = await User.findByIdAndUpdate(id, payload, {
+    new: true,
+  });
   if (!update_user) throw new Error("User not found");
 
   const user = update_user.toJSON();

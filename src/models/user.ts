@@ -39,6 +39,7 @@ const UserSchema = new Schema<IUser>(
       {
         type: Schema.Types.ObjectId,
         ref: "Company",
+        autopopulate: true,
       },
     ],
   },
