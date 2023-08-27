@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { Call } from "../../models/calls";
 
 export const TwilioPhone = z.object({
   accountSid: z.string().nullish(),
@@ -20,41 +21,32 @@ export const TwilioPhone = z.object({
   status: z.string().nullish(),
 });
 
-const TwilioCall = z.object({
-  callerName: z.string().nullish(),
-  dateCreated: z.date().nullish(),
-  dateUpdated: z.date().nullish(),
-  direction: z.string().nullish(),
-  duration: z.string().nullish(),
-  endTime: z.date().nullish(),
-  forwardedFrom: z.string().nullish(),
-  from: z.string().nullish(),
-  fromFormatted: z.string().nullish(),
-  groupSid: z.string().nullish(),
-  price: z.string().nullish(),
-  priceUnit: z.string().nullish(),
-  sid: z.string().nullish(),
-  startTime: z.date().nullish(),
-  status: z.string().nullish(),
-  to: z.string().nullish(),
-  toFormatted: z.string().nullish(),
-});
-
 export const InputCompanyId = z.object({
   id: z.string(),
 });
 
 export const InputTwilioPhoneCall = z.object({
+  userId: z.string(),
   companyId: z.string(),
   phone: z.string(),
   phones: z.array(z.string()),
 });
 
-export const InputTwilioCallCallback = TwilioCall;
+export const InputTwilioCallCallback = z
+  .object({
+    ToState: z.string(),
+    ToCountry: z.string(),
+    ToCity: z.string(),
+    FromState: z.string(),
+    FromCountry: z.string(),
+    FromCity: z.string(),
+    CallSid: z.string(),
+  })
+  .passthrough();
 
 export const OutputTwilioPhone = TwilioPhone;
 
-export const OutputTwilioCall = TwilioCall;
+export const OutputTwilioCall = Call;
 
 export const OutputTwilioCallCallback = z.object({
   sid: z.string(),

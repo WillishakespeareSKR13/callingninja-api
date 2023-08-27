@@ -19,8 +19,7 @@ export const Call: RouteOptions = {
 
 export const CallCallback: RouteOptions = {
   method: "POST",
-  url: "/api/twilio/call/callback",
-  onRequest: (f) => f.jwtVerify(),
+  url: "/api/twilio/call/callback/:id",
   handler: Controller.Twilio.CallCallback,
   schema: Controller.Twilio.Schema.CallCallback,
 };

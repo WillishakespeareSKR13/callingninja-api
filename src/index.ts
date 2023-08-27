@@ -2,6 +2,7 @@ import Fast from "fastify";
 import FastifySwagger from "@fastify/swagger";
 import FastifySwaggerUi from "@fastify/swagger-ui";
 import FastifyCors from "@fastify/cors";
+import FormBody from "@fastify/formbody";
 
 import JWT from "@fastify/jwt";
 
@@ -24,6 +25,8 @@ Fastify.register(JWT, {
 Fastify.register(FastifySwagger, CONFIG.SWAGGER.OPTIONS(CONFIG));
 Fastify.register(FastifySwaggerUi, CONFIG.SWAGGER.UIOPTIONS);
 Fastify.register(FastifyCors, CONFIG.CORS.OPTIONS);
+
+Fastify.register(FormBody);
 
 Fastify.setErrorHandler(Handler.Boom.ErrorHandler);
 Fastify.setValidatorCompiler(Plugins.Zod.ValidatorCompiler);

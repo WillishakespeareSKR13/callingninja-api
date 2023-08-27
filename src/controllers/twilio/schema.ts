@@ -25,7 +25,8 @@ export const CallCallback = {
   tags: ["twilios"],
   summary: "Post Method",
   body: Interfaces.InputTwilioCallCallback,
+  params: Interfaces.InputCompanyId,
   response: {
-    200: Interfaces.OutputTwilioCallCallback,
+    200: Interfaces.OutputTwilioCall,
   },
 };

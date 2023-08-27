@@ -1,9 +1,9 @@
 import * as Interfaces from "./interfaces";
 
-export type ITwilioPhone = typeof Interfaces.TwilioPhone["shape"];
+export type ITwilioPhone = typeof Interfaces.TwilioPhone["_type"];
 
 export type InputPhonesByCompanyId = {
-  Params: typeof Interfaces.InputCompanyId["shape"];
+  Params: typeof Interfaces.InputCompanyId["_type"];
 };
 
 export type InputTwilioPhoneCall = {
@@ -12,4 +12,5 @@ export type InputTwilioPhoneCall = {
 
 export type InputTwilioCallCallback = {
   Body: typeof Interfaces.InputTwilioCallCallback["_type"];
+  Params: typeof Interfaces.InputCompanyId["_type"];
 };
