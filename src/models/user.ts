@@ -18,7 +18,7 @@ export const User = z.object({
   active: z.boolean(),
   createdAt: z.coerce.date(),
   updatedAt: z.coerce.date(),
-  companies: z.custom<Schema.Types.ObjectId>(),
+  companies: Company.array(),
 });
 
 export type IUser = z.infer<typeof User>;
@@ -39,11 +39,14 @@ const UserSchema = new Schema<IUser>(
       {
         type: Schema.Types.ObjectId,
         ref: "Company",
+        autopopulate: true,
       },
     ],
   },
   Plugins.Mongo.Normalize()
 );
+
+UserSchema.plugin(Plugins.Mongo.AutoPopulate);
 
 const UserModel = model<IUser>("User", UserSchema);
 

@@ -7,6 +7,7 @@ export const Call = z.object({
   sid: z.string(),
   userId: z.custom<Schema.Types.ObjectId>(),
   companyId: z.custom<Schema.Types.ObjectId>(),
+  campaignId: z.custom<Schema.Types.ObjectId>().nullish(),
   to: z.string(),
   toCountry: z.string().nullish(),
   toState: z.string().nullish(),
@@ -29,6 +30,7 @@ const CallSchema = new Schema<ICall>(
   {
     userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
     companyId: { type: Schema.Types.ObjectId, ref: "Company", required: true },
+    campaignId: { type: Schema.Types.ObjectId, ref: "Campaign" },
     sid: { type: String, required: true },
     to: { type: String, required: true },
     from: { type: String, required: true },

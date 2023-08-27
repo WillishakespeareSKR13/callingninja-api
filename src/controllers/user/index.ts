@@ -14,7 +14,6 @@ export const GetById: IController = async (req) => {
 
   const user = await User.findById(id);
   if (!user) throw new Error("User not found");
-
   return user;
 };
 

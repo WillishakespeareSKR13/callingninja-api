@@ -1,6 +1,7 @@
 import CONFIG from "../../config";
 import Company from "../../models/company";
-import Calls from "../../models/calls";
+import Compaign from "../../models/campaign";
+import Calls, { ICall } from "../../models/call";
 import User from "../../models/user";
 import { IController } from "../../types/controller";
 import * as Types from "./types";
@@ -20,7 +21,7 @@ export const GetPhonesByCompanyId: IController = async (req) => {
 };
 
 export const Call: IController = async (req) => {
-  const { companyId, userId, phones, phone } =
+  const { campaignId, companyId, userId, phones, phone } =
     req.body as Types.InputTwilioPhoneCall["Body"];
 
   const user = await User.findById(userId);
@@ -28,6 +29,23 @@ export const Call: IController = async (req) => {
 
   const company = await Company.findById(companyId);
   if (!company) throw new Error("Company not found");
+
+  const useCampaign = async () => {
+    if (!campaignId) return {};
+    const campaign = await Compaign.findById(campaignId);
+    if (!campaign) throw new Error("Campaign not found");
+    return { campaignId: campaign.id };
+  };
+
+  const useCallCampaign = async (calls: ICall[]) => {
+    if (!campaignId) return;
+    const campaign = await Compaign.findByIdAndUpdate(
+      campaignId,
+      { $push: { calls: { $each: calls.map((call) => call.id) } } },
+      { new: true }
+    );
+    if (!campaign) throw new Error("Campaign not found");
+  };
 
   const { twillioSid, twillioToken } = company;
   const client = new Twilio(twillioSid, twillioToken);
@@ -49,6 +67,7 @@ export const Call: IController = async (req) => {
       to: toPhone,
       from: phone,
     });
+    const campaign = await useCampaign();
     const create_call = await Calls.create({
       sid: twilio_call.sid,
       userId,
@@ -57,11 +76,14 @@ export const Call: IController = async (req) => {
       from: twilio_call.from,
       status: twilio_call.status,
       priceUnit: twilio_call.priceUnit,
+      ...campaign,
     });
+
     return create_call;
   });
 
   const calls = await Promise.all(callsPromises);
+  await useCallCampaign(calls);
 
   return calls;
 };

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { Call } from "../../models/calls";
+import { Call } from "../../models/call";
 
 export const TwilioPhone = z.object({
   accountSid: z.string().nullish(),
@@ -26,6 +26,7 @@ export const InputCompanyId = z.object({
 });
 
 export const InputTwilioPhoneCall = z.object({
+  campaignId: z.string().nullish(),
   userId: z.string(),
   companyId: z.string(),
   phone: z.string(),
