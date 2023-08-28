@@ -30,7 +30,7 @@ export const OPTIONS = (CONFIG: ICONFIG): ISwaggerOptions => ({
 export const UIOPTIONS: FastifySwaggerUiOptions = {
   routePrefix: "/docs",
   uiConfig: {
-    docExpansion: "full",
+    docExpansion: "list",
     deepLinking: true,
   },
   staticCSP: true,
