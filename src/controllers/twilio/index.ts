@@ -59,7 +59,7 @@ export const Call: IController = async (req) => {
   const callbackUrl = `${CONFIG.APP.HOST_CALLBACK}/api/twilio/call/callback/${companyId}`;
 
   const callsPromises = phones.map(async (toPhone) => {
-    const twilio_call = await client.calls.create({
+    const twilioCall = await client.calls.create({
       twiml: Audio,
       statusCallback: callbackUrl,
       statusCallbackMethod: "POST",
@@ -68,18 +68,18 @@ export const Call: IController = async (req) => {
       from: phone,
     });
     const campaign = await useCampaign();
-    const create_call = await Calls.create({
-      sid: twilio_call.sid,
+    const createCall = await Calls.create({
+      sid: twilioCall.sid,
       userId,
       companyId,
-      to: twilio_call.to,
-      from: twilio_call.from,
-      status: twilio_call.status,
-      priceUnit: twilio_call.priceUnit,
+      to: twilioCall.to,
+      from: twilioCall.from,
+      status: twilioCall.status,
+      priceUnit: twilioCall.priceUnit,
       ...campaign,
     });
 
-    return create_call;
+    return createCall;
   });
 
   const calls = await Promise.all(callsPromises);
@@ -101,7 +101,7 @@ export const CallCallback: IController = async (req) => {
 
   const call = await client.calls(body?.CallSid).fetch();
 
-  const update_call = await Calls.findOneAndUpdate(
+  const updateCall = await Calls.findOneAndUpdate(
     { sid: call.sid },
     {
       toCountry: body.ToCountry,
@@ -119,7 +119,7 @@ export const CallCallback: IController = async (req) => {
     }
   );
 
-  return update_call;
+  return updateCall;
 };
 
 export * as Types from "./types";

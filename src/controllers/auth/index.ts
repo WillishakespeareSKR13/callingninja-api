@@ -9,8 +9,8 @@ export const Login: IController = async (req) => {
 
   if (!email && !phone) throw new Error("Email or phone is required");
 
-  const get_user = await User.findOne({ $or: [{ email }, { phone }] });
-  const user = get_user?.toJSON();
+  const getUser = await User.findOne({ $or: [{ email }, { phone }] });
+  const user = getUser?.toJSON();
   if (!user) throw new Error("User not found");
 
   const valid = await Utils.Hash.ComparePassword(password, user.password);
@@ -30,8 +30,8 @@ export const Register: IController = async (req) => {
     password,
   };
 
-  const new_user = await User.create(payload);
-  const user = new_user.toJSON();
+  const newUser = await User.create(payload);
+  const user = newUser.toJSON();
   const token = Utils.JWT.Sign(user);
 
   return { token };
@@ -40,8 +40,8 @@ export const Register: IController = async (req) => {
 export const Token: IController = async (req) => {
   const header = req.headers as unknown as Types.InputAuthToken["Headers"];
 
-  const decode_user = Utils.JWT.Decode(header?.authorization);
-  const user = decode_user as IUser;
+  const decodeUser = Utils.JWT.Decode(header?.authorization);
+  const user = decodeUser as IUser;
 
   return user;
 };

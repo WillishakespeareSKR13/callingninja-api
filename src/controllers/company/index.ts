@@ -31,8 +31,8 @@ export const Create: IController = async (req) => {
   const payload = req.body as Types.InputCreateCompany["Body"];
   const { userId } = payload;
 
-  const find_user = User.findById(userId);
-  if (!find_user) throw new Error("User not found");
+  const findUser = User.findById(userId);
+  if (!findUser) throw new Error("User not found");
 
   const company = await Company.create(payload);
 

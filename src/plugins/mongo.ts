@@ -12,8 +12,8 @@ export const Normalize = (otps?: NormalizeOptions): NormalizeReturn => ({
   toJSON: {
     virtuals: true,
     transform: function (_, ret) {
-      const delete_keys = otps?.delete ?? [];
-      delete_keys.forEach((key) => {
+      const deleteKeys = otps?.delete ?? [];
+      deleteKeys.forEach((key) => {
         delete ret[key];
       });
       delete ret._id;

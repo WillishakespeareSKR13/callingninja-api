@@ -8,7 +8,7 @@ export const InputUser = User.pick({
   password: true,
   email: true,
   phone: true,
-  phone_code: true,
+  phoneCode: true,
 });
 
 export const InputUserId = z.object({
