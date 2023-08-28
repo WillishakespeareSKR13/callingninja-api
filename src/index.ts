@@ -2,6 +2,7 @@ import Fast from "fastify";
 import FastifySwagger from "@fastify/swagger";
 import FastifySwaggerUi from "@fastify/swagger-ui";
 import FastifyCors from "@fastify/cors";
+import FastifyMultipart from "@fastify/multipart";
 import FormBody from "@fastify/formbody";
 
 import JWT from "@fastify/jwt";
@@ -21,6 +22,8 @@ Adapters.Mongo.Connect();
 Fastify.register(JWT, {
   secret: CONFIG.APP.SECRET,
 });
+
+Fastify.register(FastifyMultipart);
 
 Fastify.register(FastifySwagger, CONFIG.SWAGGER.OPTIONS(CONFIG));
 Fastify.register(FastifySwaggerUi, CONFIG.SWAGGER.UIOPTIONS);
