@@ -27,6 +27,14 @@ export const GetById: IController = async (req) => {
   return company;
 };
 
+export const GetByEmployeeId: IController = async (req) => {
+  const { id } = req.params as Types.InputCompanyByEmployeeId["Params"];
+
+  const companies = await Company.find({ employees: { $in: [id] } });
+
+  return companies;
+};
+
 export const AddEmployee: IController = async (req) => {
   const payload = req.body as Types.InputAddEmployee["Body"];
   const { companyId, employeeId } = payload;

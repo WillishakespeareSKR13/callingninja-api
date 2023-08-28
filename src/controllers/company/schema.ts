@@ -28,6 +28,16 @@ export const GetById = {
   },
 };
 
+export const GetByEmployeeId = {
+  description: "This is the method get by employee id to company endpoint",
+  tags: ["companys"],
+  summary: "Get By Employee Id Method",
+  params: Interfaces.InputCompanyId,
+  response: {
+    200: Interfaces.OutputCompany.array(),
+  },
+};
+
 export const AddEmployee = {
   description: "This is the method add employee to company endpoint",
   tags: ["companys"],
