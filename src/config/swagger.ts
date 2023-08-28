@@ -11,14 +11,14 @@ export const OPTIONS = (CONFIG: ICONFIG): ISwaggerOptions => ({
       version: "0.1.0",
     },
     securityDefinitions: {
-      apiKey: {
+      Authorization: {
         type: "apiKey",
-        name: "apiKey",
+        name: "Authorization",
         in: "header",
       },
     },
     host: CONFIG.GET.HOST_SWAGGER(),
-    security: [{ apiKey: [] }],
+    security: [{ Authorization: [] }],
     schemes: CONFIG.GET.SCHEMES(),
     consumes: ["application/json"],
     produces: ["application/json"],
