@@ -20,3 +20,11 @@ export const Token: RouteOptions = {
   handler: Controller.Auth.Token,
   schema: Controller.Auth.Schema.Token,
 };
+
+export const RefreshToken: RouteOptions = {
+  method: "GET",
+  url: "/api/auth/refreshToken",
+  onRequest: (f) => f.jwtVerify(),
+  handler: Controller.Auth.RefreshToken,
+  schema: Controller.Auth.Schema.RefreshToken,
+};

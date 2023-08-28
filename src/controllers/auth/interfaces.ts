@@ -26,3 +26,5 @@ export const InputAuthToken = z.object({
 export const OutputAuth = Auth;
 
 export const OutputAuthToken = UserInterface.OutputUser;
+
+export const OutputAuthRefreshToken = Auth;

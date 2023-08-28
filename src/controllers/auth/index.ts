@@ -46,5 +46,21 @@ export const Token: IController = async (req) => {
   return user;
 };
 
+export const RefreshToken: IController = async (req) => {
+  const header = req.headers as unknown as Types.InputAuthToken["Headers"];
+
+  const decodeUser = Utils.JWT.Decode(header?.authorization);
+  const user = decodeUser as IUser;
+
+  const getUser = await User.findById(user.id);
+  if (!getUser) throw new Error("User not found");
+
+  const newUser = getUser?.toJSON();
+
+  const token = Utils.JWT.Sign(newUser);
+
+  return { token };
+};
+
 export * as Types from "./types";
 export * as Schema from "./schema";

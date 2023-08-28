@@ -21,11 +21,21 @@ export const Register = {
 };
 
 export const Token = {
-  description: "This is the method post to auth endpoint",
+  description: "This is the method get to auth endpoint",
   tags: ["auths"],
-  summary: "Post Method",
+  summary: "Get Method",
   Headers: Interfaces.InputAuthToken,
   response: {
     200: Interfaces.OutputAuthToken,
+  },
+};
+
+export const RefreshToken = {
+  description: "This is the method get to auth endpoint",
+  tags: ["auths"],
+  summary: "Get Method",
+  Headers: Interfaces.InputAuthToken,
+  response: {
+    200: Interfaces.OutputAuthRefreshToken,
   },
 };
