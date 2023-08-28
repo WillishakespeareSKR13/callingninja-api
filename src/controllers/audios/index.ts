@@ -50,7 +50,7 @@ export const SignedUrl: IController = async (req) => {
 
   const urlName = `${audioCreate.id}.${ext}`;
 
-  const url = `https://storage.googleapis.com/${CONFIG.GOOGLE.BUCKET}/${CONFIG.APP.NAME}/audios/${urlName}`;
+  const url = `https://storage.googleapis.com/${CONFIG.GOOGLE.BUCKET}/${CONFIG.APP.NAME}/${companyId}/${urlName}`;
 
   const [signedUrl] = await storage
     .bucket(CONFIG.GOOGLE.BUCKET)
