@@ -7,6 +7,7 @@ import * as Twilio from "./twilio";
 import * as Campaign from "./campaign";
 import * as Phones from "./phones";
 import * as Audios from "./audios";
+import * as Call from "./call";
 
 const Controllers = {
   Template,
@@ -18,6 +19,7 @@ const Controllers = {
   Campaign,
   Phones,
   Audios,
+  Call,
 };
 
 export default Controllers;
