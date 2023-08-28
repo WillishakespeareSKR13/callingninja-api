@@ -6,8 +6,8 @@ import Plugins from "../plugins";
 export const OPTIONS = (CONFIG: ICONFIG): ISwaggerOptions => ({
   swagger: {
     info: {
-      title: "Test swagger",
-      description: "testing the fastify swagger api",
+      title: "Calling Ninja Node API",
+      description: "API Documentation for Calling Ninja Node API",
       version: "0.1.0",
     },
     securityDefinitions: {
