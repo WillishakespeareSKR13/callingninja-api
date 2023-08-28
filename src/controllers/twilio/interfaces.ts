@@ -29,7 +29,7 @@ export const InputTwilioPhoneCall = z.object({
   campaignId: z.string().nullish(),
   userId: z.string(),
   companyId: z.string(),
-  phone: z.string(),
+  fromPhone: z.string(),
   phones: z.array(z.string()),
 });
 

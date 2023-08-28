@@ -21,7 +21,7 @@ export const GetPhonesByCompanyId: IController = async (req) => {
 };
 
 export const Call: IController = async (req) => {
-  const { campaignId, companyId, userId, phones, phone } =
+  const { campaignId, companyId, userId, phones, fromPhone } =
     req.body as Types.InputTwilioPhoneCall["Body"];
 
   const user = await User.findById(userId);
@@ -65,7 +65,7 @@ export const Call: IController = async (req) => {
       statusCallbackMethod: "POST",
       statusCallbackEvent: ["initiated", "ringing", "answered", "completed"],
       to: toPhone,
-      from: phone,
+      from: fromPhone,
     });
     const campaign = await useCampaign();
     const createCall = await Calls.create({
