@@ -9,6 +9,7 @@ export const Company = z.object({
   address: z.string(),
   twillioSid: z.string(),
   twillioToken: z.string(),
+  employees: z.array(z.custom<Schema.Types.ObjectId>()),
 });
 
 export type ICompany = z.infer<typeof Company>;
@@ -20,6 +21,7 @@ const CompanySchema = new Schema<ICompany>(
     address: { type: String, required: true },
     twillioSid: { type: String, required: true },
     twillioToken: { type: String, required: true },
+    employees: [{ type: Schema.Types.ObjectId, ref: "User" }],
   },
   Plugins.Mongo.Normalize()
 );

@@ -27,6 +27,23 @@ export const GetById: IController = async (req) => {
   return company;
 };
 
+export const AddEmployee: IController = async (req) => {
+  const payload = req.body as Types.InputAddEmployee["Body"];
+  const { companyId, employeeId } = payload;
+
+  const companyFind = await Company.findById(companyId);
+  if (!companyFind) throw new Error("Company not found");
+
+  const user = await User.findById(employeeId);
+  if (!user) throw new Error("User not found");
+
+  const company = await Company.findByIdAndUpdate(companyId, {
+    $push: { employees: employeeId },
+  });
+
+  return company;
+};
+
 export const Create: IController = async (req) => {
   const payload = req.body as Types.InputCreateCompany["Body"];
   const { userId } = payload;

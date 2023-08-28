@@ -17,6 +17,10 @@ export type InputUpdateCompany = {
   Body: Partial<typeof Interfaces.InputCompany["_type"]>;
 };
 
+export type InputAddEmployee = {
+  Body: typeof Interfaces.InputEmployee["_type"];
+};
+
 export type InputDeleteCompany = {
   Params: typeof Interfaces.InputCompanyId["_type"];
 };

@@ -13,4 +13,9 @@ export const InputCompanyId = z.object({
   id: z.string(),
 });
 
+export const InputEmployee = z.object({
+  companyId: z.string(),
+  employeeId: z.string(),
+});
+
 export const OutputCompany = Company;
