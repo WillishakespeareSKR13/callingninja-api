@@ -5,6 +5,7 @@ import * as Auth from "./auth";
 import * as Company from "./company";
 import * as Twilio from "./twilio";
 import * as Campaign from "./campaign";
+import * as Phones from "./phones";
 
 const Controllers = {
   Template,
@@ -14,6 +15,7 @@ const Controllers = {
   Company,
   Twilio,
   Campaign,
+  Phones,
 };
 
 export default Controllers;

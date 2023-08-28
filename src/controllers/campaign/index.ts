@@ -28,7 +28,7 @@ export const Update: IController = async (req) => {
   const campaign = await Campaign.findByIdAndUpdate(id, body, {
     new: true,
   });
-  if (!campaign) throw new Error("User not found");
+  if (!campaign) throw new Error("Campaign not found");
 
   return campaign;
 };
@@ -37,7 +37,7 @@ export const Delete: IController = async (req) => {
   const { id } = req.params as Types.InputDeleteCampaign["Params"];
 
   const campaign = await Campaign.findByIdAndDelete(id);
-  if (!campaign) throw new Error("User not found");
+  if (!campaign) throw new Error("Campaign not found");
 
   return campaign;
 };
