@@ -26,8 +26,10 @@ export const Image: IController = async (req) => {
     .bucket(CONFIG.GOOGLE.BUCKET)
     .file(`${CONFIG.APP.NAME}/images/${urlName}`)
     .getSignedUrl({
+      version: "v4",
       action: "write",
-      expires: Date.now() + 1000 * 60 * 60 * 24 * 365 * 10,
+      expires: Date.now() + 15 * 60 * 1000,
+      contentType: "application/octet-stream",
     });
 
   return {
