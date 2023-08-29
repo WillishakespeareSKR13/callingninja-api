@@ -3,6 +3,7 @@ import { Company } from "../../models/company";
 
 export const InputCompany = Company.omit({
   id: true,
+  employees: true,
 });
 
 export const InputCompanyUserId = z.object({
