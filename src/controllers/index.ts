@@ -8,6 +8,7 @@ import * as Campaign from "./campaign";
 import * as Phones from "./phones";
 import * as Audios from "./audios";
 import * as Call from "./call";
+import * as Storage from "./storage";
 
 const Controllers = {
   Template,
@@ -20,6 +21,7 @@ const Controllers = {
   Phones,
   Audios,
   Call,
+  Storage,
 };
 
 export default Controllers;
