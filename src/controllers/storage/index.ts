@@ -24,7 +24,7 @@ export const Image: IController = async (req) => {
 
   const [signedUrl] = await storage
     .bucket(CONFIG.GOOGLE.BUCKET)
-    .file(`${CONFIG.APP.NAME}/audios/${urlName}`)
+    .file(`${CONFIG.APP.NAME}/images/${urlName}`)
     .getSignedUrl({
       action: "write",
       expires: Date.now() + 1000 * 60 * 60 * 24 * 365 * 10,
