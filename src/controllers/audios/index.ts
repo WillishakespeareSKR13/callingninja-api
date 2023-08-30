@@ -63,6 +63,8 @@ export const SignedUrl: IController = async (req) => {
 
   const url = `https://storage.googleapis.com/${CONFIG.GOOGLE.BUCKET}/${CONFIG.APP.NAME}/audios/${companyId}/${urlName}`;
 
+  const contentType = `audio/${ext}`;
+
   const [signedUrl] = await storage
     .bucket(CONFIG.GOOGLE.BUCKET)
     .file(`${CONFIG.APP.NAME}/audios/${companyId}/${urlName}`)
@@ -70,7 +72,7 @@ export const SignedUrl: IController = async (req) => {
       version: "v4",
       action: "write",
       expires: Date.now() + 15 * 60 * 1000,
-      contentType: "application/octet-stream",
+      contentType,
     });
 
   const audio = await Audio.findByIdAndUpdate(
