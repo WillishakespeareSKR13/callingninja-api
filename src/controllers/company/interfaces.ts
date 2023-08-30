@@ -20,6 +20,11 @@ export const InputEmployee = z.object({
   employeeId: z.string(),
 });
 
+export const InputEmployeeByEmail = z.object({
+  companyId: z.string(),
+  email: z.string().email(),
+});
+
 export const InputCompanyByEmployeeId = z.object({
   id: z.string(),
 });

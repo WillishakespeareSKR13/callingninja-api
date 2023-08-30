@@ -58,6 +58,16 @@ export const AddEmployee = {
   },
 };
 
+export const AddEmployeeByEmail = {
+  description: "This is the method add employee by email to company endpoint",
+  tags: ["companys"],
+  summary: "Add Employee By Email Method",
+  body: Interfaces.InputEmployeeByEmail,
+  response: {
+    200: Interfaces.OutputCompany,
+  },
+};
+
 export const Create = {
   description: "This is the method post to company endpoint",
   tags: ["companys"],

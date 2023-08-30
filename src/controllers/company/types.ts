@@ -29,6 +29,10 @@ export type InputAddEmployee = {
   Body: typeof Interfaces.InputEmployee["_type"];
 };
 
+export type InputAddEmployeeByEmail = {
+  Body: typeof Interfaces.InputEmployeeByEmail["_type"];
+};
+
 export type InputDeleteCompany = {
   Params: typeof Interfaces.InputCompanyId["_type"];
 };
