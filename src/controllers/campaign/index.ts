@@ -1,6 +1,7 @@
 import { IController } from "../../types/controller";
 import * as Types from "./types";
 import Campaign from "../../models/campaign";
+import Company from "../../models/company";
 
 export const Get: IController = async () => {
   const campaigns = await Campaign.find();
@@ -13,6 +14,16 @@ export const GetById: IController = async (req) => {
   if (!campaign) throw new Error("Campaign not found");
 
   return campaign;
+};
+
+export const GetByCompanyId: IController = async (req) => {
+  const { id } = req.params as Types.InputCampaignByCompanyId["Params"];
+
+  const company = await Company.findById(id);
+  if (!company) throw new Error("Company not found");
+
+  const campaigns = await Campaign.find({ companyId: id });
+  return campaigns;
 };
 
 export const Create: IController = async (req) => {

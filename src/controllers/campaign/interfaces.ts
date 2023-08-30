@@ -12,4 +12,8 @@ export const InputCampaignId = z.object({
   id: z.string(),
 });
 
+export const InputCampaignCompanyId = z.object({
+  id: z.string(),
+});
+
 export const OutputCampaign = Campaign;

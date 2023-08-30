@@ -15,6 +15,13 @@ export const GetById: RouteOptions = {
   schema: Controller.Campaign.Schema.GetById,
   onRequest: (f) => f.jwtVerify(),
 };
+export const GetByCompanyId: RouteOptions = {
+  method: "GET",
+  url: "/api/campaign/company/:id",
+  handler: Controller.Campaign.GetByCompanyId,
+  schema: Controller.Campaign.Schema.GetByCompanyId,
+  onRequest: (f) => f.jwtVerify(),
+};
 export const Create: RouteOptions = {
   method: "POST",
   url: "/api/campaign",

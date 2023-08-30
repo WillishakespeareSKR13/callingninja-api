@@ -19,6 +19,16 @@ export const GetById = {
   },
 };
 
+export const GetByCompanyId = {
+  description: "This is the method get by company id to campaign endpoint",
+  tags: ["campaigns"],
+  summary: "Get By Company Id Method",
+  params: Interfaces.InputCampaignCompanyId,
+  response: {
+    200: Interfaces.OutputCampaign.array(),
+  },
+};
+
 export const Create = {
   description: "This is the method post to campaign endpoint",
   tags: ["campaigns"],
