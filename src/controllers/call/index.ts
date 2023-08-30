@@ -35,7 +35,7 @@ export const GetByCompanyId: IController = async (req) => {
     })
   );
 
-  return calls;
+  return callsWithRelations;
 };
 
 export const GetByCampaignId: IController = async (req) => {

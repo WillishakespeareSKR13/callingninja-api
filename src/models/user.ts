@@ -13,6 +13,7 @@ export const User = z.object({
   phone: z.string(),
   phoneCode: z.string(),
   password: z.string(),
+  image: z.string(),
   role: Roles,
   token: z.string(),
   active: z.boolean(),
@@ -31,6 +32,10 @@ const UserSchema = new Schema<IUser>(
     email: { type: String, required: true, unique: true },
     phone: { type: String, required: true, unique: true },
     token: { type: String, default: "" },
+    image: {
+      type: String,
+      default: "https://www.touchtaiwan.com/images/default.jpg",
+    },
     phoneCode: { type: String, required: true },
     password: { type: String, required: true },
     role: { type: String, default: "USER" },
