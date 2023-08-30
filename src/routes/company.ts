@@ -49,6 +49,14 @@ export const AddEmployee: RouteOptions = {
   schema: Controller.Company.Schema.AddEmployee,
 };
 
+export const AddEmployeeByEmail: RouteOptions = {
+  method: "POST",
+  url: "/api/company/employee/email",
+  onRequest: (f) => f.jwtVerify(),
+  handler: Controller.Company.AddEmployeeByEmail,
+  schema: Controller.Company.Schema.AddEmployeeByEmail,
+};
+
 export const Create: RouteOptions = {
   method: "POST",
   url: "/api/company",
