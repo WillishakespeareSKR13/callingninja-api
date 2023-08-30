@@ -20,6 +20,16 @@ export const GetById = {
   },
 };
 
+export const GetByCompanyId = {
+  description: "This is the method get by company id to audios endpoint",
+  tags: ["audios"],
+  summary: "Get By Company Id Method",
+  params: Interfaces.InputAudiosByCompanyId,
+  response: {
+    200: Interfaces.OutputAudios.array(),
+  },
+};
+
 export const SignedUrl = {
   description: "This is the method post to audios endpoint",
   tags: ["audios"],

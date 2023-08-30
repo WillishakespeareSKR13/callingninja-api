@@ -16,6 +16,10 @@ export const InputUpdateAudios = Audios.omit({
   id: true,
 });
 
+export const InputAudiosByCompanyId = z.object({
+  id: z.string(),
+});
+
 export const InputAudiosId = Audios.pick({
   id: true,
 });

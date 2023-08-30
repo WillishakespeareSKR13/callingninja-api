@@ -8,6 +8,10 @@ export type InputAudiosGet = {
   Querystring: typeof Interfaces.InputAudiosGet["_type"];
 };
 
+export type InputAudiosByCompanyId = {
+  Params: typeof Interfaces.InputAudiosByCompanyId["_type"];
+};
+
 export type InputAudiosSignedUrl = {
   Body: typeof Interfaces.InputAudiosSignedUrl["_type"];
 };

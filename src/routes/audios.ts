@@ -15,6 +15,13 @@ export const GetById: RouteOptions = {
   schema: Controller.Audios.Schema.GetById,
   onRequest: (f) => f.jwtVerify(),
 };
+export const GetByCompanyId: RouteOptions = {
+  method: "GET",
+  url: "/api/audios/company/:id",
+  handler: Controller.Audios.GetByCompanyId,
+  schema: Controller.Audios.Schema.GetByCompanyId,
+  onRequest: (f) => f.jwtVerify(),
+};
 export const SignedUrl: RouteOptions = {
   method: "POST",
   url: "/api/audios/signedUrl",

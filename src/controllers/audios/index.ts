@@ -24,6 +24,17 @@ export const GetById: IController = async (req) => {
   return audio;
 };
 
+export const GetByCompanyId: IController = async (req) => {
+  const { id } = req.params as Types.InputAudiosByCompanyId["Params"];
+
+  const company = await Company.findById(id);
+  if (!company) throw new Error("Company not found");
+
+  const audios = await Audio.find({ companyId: company._id });
+
+  return audios;
+};
+
 export const SignedUrl: IController = async (req) => {
   const { fileName, companyId } =
     req.body as Types.InputAudiosSignedUrl["Body"];
