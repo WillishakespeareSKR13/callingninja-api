@@ -2,6 +2,7 @@ import { IController } from "../../types/controller";
 import * as Types from "./types";
 import Call from "../../models/call";
 import Company from "../../models/company";
+import User from "../../models/user";
 import Campaign from "../../models/campaign";
 
 export const Get: IController = async () => {
@@ -25,6 +26,14 @@ export const GetByCompanyId: IController = async (req) => {
   if (!company) throw new Error("Company not found");
 
   const calls = await Call.find({ companyId: company._id });
+  const callsWithRelations = await Promise.all(
+    calls.map(async (call) => {
+      const campaign = await Campaign.findById(call.campaignId);
+      const user = await User.findById(call.userId);
+      const company = await Company.findById(call.companyId);
+      return { ...call.toJSON(), campaign, user, company };
+    })
+  );
 
   return calls;
 };

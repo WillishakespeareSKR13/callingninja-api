@@ -6,18 +6,21 @@ export const Get: RouteOptions = {
   url: "/api/audios",
   handler: Controller.Audios.Get,
   schema: Controller.Audios.Schema.Get,
+  onRequest: (f) => f.jwtVerify(),
 };
 export const GetById: RouteOptions = {
   method: "GET",
   url: "/api/audios/:id",
   handler: Controller.Audios.GetById,
   schema: Controller.Audios.Schema.GetById,
+  onRequest: (f) => f.jwtVerify(),
 };
 export const SignedUrl: RouteOptions = {
   method: "POST",
   url: "/api/audios/signedUrl",
   handler: Controller.Audios.SignedUrl,
   schema: Controller.Audios.Schema.SignedUrl,
+  onRequest: (f) => f.jwtVerify(),
 };
 
 export const Update: RouteOptions = {
@@ -25,6 +28,7 @@ export const Update: RouteOptions = {
   url: "/api/audios/:id",
   handler: Controller.Audios.Update,
   schema: Controller.Audios.Schema.Update,
+  onRequest: (f) => f.jwtVerify(),
 };
 
 export const Delete: RouteOptions = {
@@ -32,4 +36,5 @@ export const Delete: RouteOptions = {
   url: "/api/audios/:id",
   handler: Controller.Audios.Delete,
   schema: Controller.Audios.Schema.Delete,
+  onRequest: (f) => f.jwtVerify(),
 };

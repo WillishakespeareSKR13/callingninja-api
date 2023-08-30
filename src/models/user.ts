@@ -18,7 +18,7 @@ export const User = z.object({
   active: z.boolean(),
   createdAt: z.coerce.date(),
   updatedAt: z.coerce.date(),
-  companies: Company.array(),
+  companies: z.custom<Schema.Types.ObjectId>().array(),
 });
 
 export type IUser = z.infer<typeof User>;
@@ -39,7 +39,6 @@ const UserSchema = new Schema<IUser>(
       {
         type: Schema.Types.ObjectId,
         ref: "Company",
-        autopopulate: true,
       },
     ],
   },

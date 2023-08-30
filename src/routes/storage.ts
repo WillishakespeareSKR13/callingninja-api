@@ -6,4 +6,5 @@ export const Image: RouteOptions = {
   url: "/api/storage/image",
   handler: Controller.Storage.Image,
   schema: Controller.Storage.Schema.Image,
+  onRequest: (f) => f.jwtVerify(),
 };
