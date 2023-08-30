@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { Company } from "../../models/company";
+import { User } from "../../models/user";
 
 export const InputCompany = Company.omit({
   id: true,
@@ -24,3 +25,5 @@ export const InputCompanyByEmployeeId = z.object({
 });
 
 export const OutputCompany = Company;
+
+export const OutputCompanyEmployees = User.array();

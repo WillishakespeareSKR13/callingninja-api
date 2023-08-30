@@ -25,6 +25,14 @@ export const GetById: RouteOptions = {
   schema: Controller.Company.Schema.GetById,
 };
 
+export const GetByIdEmployees: RouteOptions = {
+  method: "GET",
+  url: "/api/company/:id/employees",
+  onRequest: (f) => f.jwtVerify(),
+  handler: Controller.Company.GetByIdEmployees,
+  schema: Controller.Company.Schema.GetByIdEmployees,
+};
+
 export const GetByEmployeeId: RouteOptions = {
   method: "GET",
   url: "/api/company/employee/:id",

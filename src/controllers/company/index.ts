@@ -27,6 +27,17 @@ export const GetById: IController = async (req) => {
   return company;
 };
 
+export const GetByIdEmployees: IController = async (req) => {
+  const { id } = req.params as Types.InputCompanyByIdEmployees["Params"];
+
+  const company = await Company.findById(id);
+  if (!company) throw new Error("Company not found");
+
+  const employees = await User.find({ _id: { $in: company.employees } });
+
+  return employees;
+};
+
 export const GetByEmployeeId: IController = async (req) => {
   const { id } = req.params as Types.InputCompanyByEmployeeId["Params"];
 

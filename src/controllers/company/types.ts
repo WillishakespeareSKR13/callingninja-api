@@ -12,6 +12,10 @@ export type InputCompanyByEmployeeId = {
   Params: typeof Interfaces.InputCompanyId["_type"];
 };
 
+export type InputCompanyByIdEmployees = {
+  Params: typeof Interfaces.InputCompanyId["_type"];
+};
+
 export type InputCreateCompany = {
   Body: typeof Interfaces.InputCompany["_type"];
 };
