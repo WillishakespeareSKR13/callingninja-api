@@ -28,6 +28,7 @@ export const InputCompanyId = z.object({
 export const InputTwilioPhoneCall = z.object({
   campaignId: z.string().nullish(),
   userId: z.string(),
+  audioId: z.string(),
   companyId: z.string(),
   fromPhone: z.string(),
   phones: z.array(z.string()),

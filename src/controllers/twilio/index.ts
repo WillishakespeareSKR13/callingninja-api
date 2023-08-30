@@ -3,6 +3,7 @@ import Company from "../../models/company";
 import Compaign from "../../models/campaign";
 import Calls, { ICall } from "../../models/call";
 import User from "../../models/user";
+import Audio from "../../models/audios";
 import { IController } from "../../types/controller";
 import * as Types from "./types";
 import { Twilio } from "twilio";
@@ -21,7 +22,7 @@ export const GetPhonesByCompanyId: IController = async (req) => {
 };
 
 export const Call: IController = async (req) => {
-  const { campaignId, companyId, userId, phones, fromPhone } =
+  const { campaignId, companyId, audioId, userId, phones, fromPhone } =
     req.body as Types.InputTwilioPhoneCall["Body"];
 
   const user = await User.findById(userId);
@@ -29,6 +30,9 @@ export const Call: IController = async (req) => {
 
   const company = await Company.findById(companyId);
   if (!company) throw new Error("Company not found");
+
+  const audio = await Audio.findById(audioId);
+  if (!audio) throw new Error("Audio not found");
 
   const useCampaign = async () => {
     if (!campaignId) return {};
@@ -50,9 +54,9 @@ export const Call: IController = async (req) => {
   const { twillioSid, twillioToken } = company;
   const client = new Twilio(twillioSid, twillioToken);
 
-  const Audio = `
+  const AudioML = `
     <Response>
-      <Play>http://demo.twilio.com/docs/classic.mp3</Play>
+      <Play>${audio?.url}</Play>
     </Response>
   `;
 
@@ -60,7 +64,7 @@ export const Call: IController = async (req) => {
 
   const callsPromises = phones.map(async (toPhone) => {
     const twilioCall = await client.calls.create({
-      twiml: Audio,
+      twiml: AudioML,
       statusCallback: callbackUrl,
       statusCallbackMethod: "POST",
       statusCallbackEvent: ["initiated", "ringing", "answered", "completed"],
